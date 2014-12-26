@@ -91,11 +91,18 @@ $(document).ready(function() {
                         duration = "q";
                         break;
                 }
-                var n = new Vex.Flow.StaveNote({ keys: [result[0].cuerpo[i].notas[j].nombre.substr(0,1).toLowerCase()+"/4"], duration: duration });
-                if (result[0].cuerpo[i].notas[j].nombre.search('b') != -1)
-                    n.addAccidental(0, new Vex.Flow.Accidental("b"));
-                else if (result[0].cuerpo[i].notas[j].nombre.search('#') != -1)
-                    n.addAccidental(0, new Vex.Flow.Accidental("#"));
+                if (result[0].cuerpo[i].notas[j].type == "Silencio") {
+                    duration += "r";
+                    var n = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: duration });
+                }
+                else {
+                    var n = new Vex.Flow.StaveNote({ keys: [result[0].cuerpo[i].notas[j].nombre.substr(0,1).toLowerCase()+"/4"], duration: duration });
+
+                    if (result[0].cuerpo[i].notas[j].nombre.search('b') != -1)
+                        n.addAccidental(0, new Vex.Flow.Accidental("b"));
+                    else if (result[0].cuerpo[i].notas[j].nombre.search('#') != -1)
+                        n.addAccidental(0, new Vex.Flow.Accidental("#"));
+                }
                 notas.push(n);
             }
             if (i == result[0].cuerpo.length - 1)

@@ -154,3 +154,14 @@ font-weight: bold;
 width: 100px;
 padding: 5px;
 }
+
+#lienzo {
+    display: none;
+}
+
+.mostrarlienzo {
+    display: block;
+    visibility: visible;
+    border: 2px solid #000000;
+}
+    
